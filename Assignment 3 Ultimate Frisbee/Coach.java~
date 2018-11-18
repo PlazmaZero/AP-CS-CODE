@@ -1,0 +1,14 @@
+public class Coach extends Person
+{
+  String role;
+  
+  public Coach(String first,String last,String job)
+  {
+    super(first,last);
+    role=kind;
+  }
+  public String toString()
+  {
+    return(super.toString+"\n   Role: "+job);
+  }
+}

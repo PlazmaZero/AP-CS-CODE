@@ -1,0 +1,40 @@
+public class TeamMember 
+{
+ public String fullName;
+ private String idString;
+ 
+ public TeamMember(String name,String id)
+ {
+  String temp="";
+   name.toLowerCase();
+   temp+=(name.substring(0,0)).toUpperCase();
+   for (int i=1;i<name.length();i++)
+   {
+     if (name.charAt(i-1)==' ')
+     {
+       temp+=(name.substring(i,i)).toUpperCase();
+     }
+     else
+     {
+       temp+=name.substring(i,i);
+     }
+   }
+   fullName=temp;
+   id=idString;
+ }
+ public String toString()
+ {
+   return fullName;
+ }
+ public int compareTo(TeamMember other)
+ {
+   return idString.compareTo(other.idString);
+ }
+     public static void main(String args []){
+    TeamMember a= new TeamMember("Bob Smith","2");
+      TeamMember b = new TeamMember("Bob Smith","4");
+      System.out.println(a.toString());
+      
+      
+}
+}

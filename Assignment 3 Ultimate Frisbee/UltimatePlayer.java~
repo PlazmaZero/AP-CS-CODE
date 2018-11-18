@@ -1,0 +1,18 @@
+public class UltimatePlayer extends Person
+{
+  int jerseyNumber;
+  String position;
+  
+ 
+  public UltimatePlayer(String first, String last,String pos)
+  {
+    super(first,last);
+    jerseyNumber++;
+    if (position=="cutter")
+    {
+     position=pos; 
+    }
+    else
+      position="handler";
+  }
+}

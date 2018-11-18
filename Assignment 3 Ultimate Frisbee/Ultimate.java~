@@ -1,0 +1,11 @@
+public class UltimatePlayer extends Person
+{
+  int jerseyNumber;
+  String position;
+  
+  Person a=new person;
+  public void UltimatePlayer(String first, String last, position)
+  {
+    
+  }
+}

@@ -1,0 +1,67 @@
+import java.util.*;
+
+public class Main {
+
+  public static void main (String[] args) {
+
+    // Write your code here
+GameWheel one =new GameWheel();
+ ArrayList<PrizeCard>player1 = new ArrayList<PrizeCard>();
+ ArrayList<PrizeCard> onemod = new ArrayList<PrizeCard>(one.getPrizeCards());
+  ArrayList<PrizeCard>player2 = new ArrayList<PrizeCard>();
+  player1.add(one.spinWheel());
+while (player1.size()<5)
+ {
+ PrizeCard temp1= new PrizeCard();
+ PrizeCard temp2= new PrizeCard();
+temp1=one.spinWheel();
+int lel=0;
+boolean kek =false;
+for (int i= 0; i<player1.size();i++)
+{
+  if (player1.get(i)==temp1)
+  {
+   kek=true;
+   System.out.println("gei");
+   break;
+  }
+  
+}
+if (kek==false)
+  player1.add(temp1);
+
+           }
+ int totalOne=0;
+ int totalTwo=0;
+    for (PrizeCard a: player1)
+{
+  totalOne+=a.getPrizeAmount();
+}
+        for (PrizeCard a: player2)
+{
+  totalTwo+=a.getPrizeAmount();
+}
+System.out.println("Player 1 total: $"+totalOne);
+    for (PrizeCard a: player1)
+{
+  System.out.println(a.toString());
+}
+System.out.println("\nPlayer 2 total: $"+totalTwo); 
+    for (PrizeCard a: player2)
+{
+  System.out.println(a.toString());
+}
+    if (totalOne==totalTwo)
+    {
+     System.out.println("\nIt’s a tie!");
+    }
+    else if (totalOne-totalTwo>0)
+    {
+      System.out.println("\nPlayer 1 won by $"+(totalOne-totalTwo)+"!");
+    }
+    else
+    {
+      System.out.println("\nPlayer 2 won by $"+(totalTwo-totalOne)+"!");
+    }
+  }
+}

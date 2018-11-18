@@ -1,0 +1,198 @@
+public class Gameboard
+{
+  public char board [][]=new char[8][8];;
+  
+  public Gameboard(boolean setup)
+  {
+    if (setup==false)
+    {
+      for (int i=0; i<board.length;i++)
+      {
+        for (int c=0;c<board[0].length;c++)
+        {
+         board[i][c]='-';
+        } 
+      }
+    }
+    else
+    {
+            for (int i=0; i<board.length;i++)
+      {
+        for (int c=0;c<board[0].length;c++)
+        {
+          if ((i%2==0)&&(c%2==1)&&(i<=2))
+          {
+           board[i][c]='r'; 
+          }
+          else if ((i%2==1)&&(c%2==0)&&(i<=2))
+          {
+           board[i][c]='r'; 
+          }
+            else if ((i%2==1)&&(c%2==0)&&(i>=5))
+          {
+           board[i][c]='w'; 
+          }
+            else if ((i%2==0)&&(c%2==1)&&(i>=5))
+          {
+           board[i][c]='w'; 
+          }              
+          else {
+         board[i][c]='-';
+          }
+        } 
+      }
+    }
+  }
+  
+ public boolean move(int x,int y, boolean left)
+ { 
+   if (board [y][x]=='w')//sorts action based on type 
+   {
+    if (jump(x,y)==true)// will do jump if it can jump
+    {
+     jump(x,y);
+     return true;
+    }
+    else if (left==true&&(x-1>=0)&&(y-1>=0)&&(board[y-1][x-1]=='-'))//will move if jump returns false
+    {
+      board[y-1][x-1]='w';
+      board[y][x]='-';
+      return true;
+    }
+    else if (left==false&&(x+1<=7)&&(y-1>=0)&&(board[y-1][x+1]=='-'))
+    {
+      board[y-1][x+1]='w';
+      board[y][x]='-';
+      return true;
+    }
+   
+   else 
+   {
+     return false;
+   }
+   }
+      if (board [y][x]=='r')//mirrored of the above
+   {
+    if (jump(x,y)==true)
+    {
+     jump(x,y);
+     return true;
+    }
+    else if (left==true&&(x+1>=0)&&(y+1>=0)&&(board[y+1][x+1]=='-'))
+    {
+      board[y+1][x+1]='r';
+      board[y][x]='-';
+      return true;
+    }
+    else if (left==false&&(x-1<=7)&&(y+1>=0)&&(board[y+1][x-1]=='-'))
+    {
+      board[y+1][x-1]='r';
+      board[y][x]='-';
+      return true;
+    }
+   
+   else 
+   {
+     return false;
+   }
+   }
+      else 
+        return false;
+ }
+
+
+  public boolean jump(int x, int y)
+  {
+         boolean check=false;    
+    int tempx;
+    int tempy;
+    if (board[y][x]=='w')
+    {
+      if ((x-2>=0)&&(y-1>=0)&&(board[y-1][x-1]=='r')&&(board[y-2][x-2]=='-'))//checks for if forward left ok, jumps and then runs jump again from new loaction
+      {
+        tempx=x-2;
+        tempy=y-2;
+        board[y-2][x-2]='w';
+        board[y-1][x-1]='-';
+        board[y][x]='-';
+        check=true;
+        jump (tempx,tempy);
+        return check;
+      }
+      else if ((x+2<=7)&&(y-1>=0)&&(board[y-1][x+1]=='r')&&(board[y-2][x+2]=='-'))//checks for if forward right ok
+      {
+        tempx=x+2;
+        tempy=y-2;
+        board[y-2][x+2]='w';
+        board[y-1][x+1]='-';
+        board[y][x]='-';
+        check=true;        
+        jump (tempx,tempy);
+                return check;
+      }
+      else
+        check=false;
+                return check;
+    }
+    else if (board[y][x]=='r')
+    {
+         if ((x+2<=7)&&(y+1<=7)&&(board[y+1][x+1]=='w')&&(board[y+2][x+2]=='-'))//checks for if forward left ok
+      {
+        tempx=x+2;
+        tempy=y+2;
+        board[y+2][x+2]='r';
+        board[y+1][x+1]='-';
+        board[y][x]='-';
+        check=true;
+        jump (tempx,tempy);
+                return check;
+      }
+      else if ((x-2>=0)&&(y-1<=7)&&(board[y+1][x-1]=='w')&&(board[y+2][x-2]=='-'))//checks for if forward right ok
+      {
+        tempx=x-2;
+        tempy=y+2;
+        board[y+2][x-2]='r';
+        board[y+1][x-1]='-';
+        board[y][x]='-';
+        check=true;
+        jump (tempx,tempy);
+                return check;
+    }
+      else
+        check= false;
+                return check;      
+  }
+      else
+        return check;    
+  }
+  
+  public boolean kingMe(int y, int x)
+  {
+
+    if (board[y][x]=='r'&&(y==7))//makes sure right character and row
+      {
+      board[y][x]='R';
+      return true;
+      }
+        else if (board[y][x]=='w'&&(y==0))
+        {
+      board[y][x]='W';  
+      return true;
+        }
+        else 
+          return false;
+  }
+  public String toString()
+  {
+    String s="";
+    for (int i=0;i<board.length;i++)
+    {
+     for (int c=0;c<board[0].length;c++)
+     {
+       s+=board[i][c]+" ";
+     }
+     s+="\n";
+    }
+    return s;
+  }
+}

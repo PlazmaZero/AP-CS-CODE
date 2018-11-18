@@ -1,0 +1,25 @@
+import java.io.*;
+import static java.lang.System.*;
+
+import java.util.Scanner;
+import java.lang.Math;
+
+import java.util.ArrayList;
+
+
+public class lol {
+ 
+
+    public static void main(String[] args) {
+
+public static void mystery (int x[]) {
+    System.out.println("A");
+}
+public static void mystery (int x) {
+    System.out.println("B");
+}
+public static void mystery (String x) {
+    System.out.println("C");
+}
+    }
+}

@@ -1,0 +1,28 @@
+public class A {
+    public A () {
+        System.out.print(“one ”);
+    }
+
+    public A (int z) {
+        System.out.print(“two ”);
+    }
+
+    public void doStuff() {
+        System.out.print(“six ”);
+    }
+}
+
+public class B extends A {
+    public B () {
+        super ();
+        System.out.print(“three ”);
+    }
+
+    public B (int val) {
+        super (val);
+        System.out.print(“four ”);
+    }
+} 
+  
+  
+}
